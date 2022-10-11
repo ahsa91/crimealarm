@@ -31,9 +31,9 @@ class SplashActivity : AppCompatActivity() {
 
         Handler().postDelayed(
             {
-                // Launch the Main Activity
+                // Launch PlacemarkListActivity
                 startActivity(Intent(this@SplashActivity, PlacemarkListActivity::class.java))
-                finish() // Call this when your activity is done and should be closed.
+                finish() // closes splash screen activity
             },
             2500
         ) // Here we pass the delay time in milliSeconds after which the splash activity will disappear.
