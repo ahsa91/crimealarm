@@ -13,16 +13,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CrimeAlarm">
         <activity
+            android:name=".activities.LoginActivity"
+            android:exported="false"
+            android:theme="@style/Theme.CrimeAlarm.NoActionBar" />
+        />
+        <activity
             android:name=".activities.SplashActivity"
+            android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.CrimeAlarm.NoActionBar"
-            android:exported="true">
+            android:theme="@style/Theme.CrimeAlarm.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
@@ -33,8 +39,7 @@
             android:label="@string/title_activity_map" />
         <activity
             android:name=".activities.PlacemarkListActivity"
-            android:exported="true"/>
-
+            android:exported="true" />
         <activity android:name=".activities.PlacemarkActivity" />
     </application>
 
