@@ -31,8 +31,8 @@ class SplashActivity : AppCompatActivity() {
 
         Handler().postDelayed(
             {
-                // Launch PlacemarkListActivity
-                startActivity(Intent(this@SplashActivity, PlacemarkListActivity::class.java))
+                // Launched PlacemarkListActivity initially
+                startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
                 finish() // closes splash screen activity
             },
             2500
