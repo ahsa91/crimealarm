@@ -11,11 +11,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CrimeAlarm">
         <activity
+            android:name=".activities.BaseActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.RegisterActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.CrimeAlarm.NoActionBar"
-            />
+            android:theme="@style/Theme.CrimeAlarm.NoActionBar" />
         <activity
             android:name=".activities.LoginActivity"
             android:exported="false"

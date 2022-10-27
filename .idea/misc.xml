@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/dev/m_app_dev/assignment_1/crimealaram/app/src/main/res/drawable/button_background.xml" value="0.1" />
+        <entry key="..\:/dev/m_app_dev/assignment_1/crimealaram/app/src/main/res/drawable/ic_black_color_back_24dp.xml" value="0.2595" />
+        <entry key="..\:/dev/m_app_dev/assignment_1/crimealaram/app/src/main/res/layout/activity_base.xml" value="0.25416666666666665" />
         <entry key="..\:/dev/m_app_dev/assignment_1/crimealaram/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
         <entry key="..\:/dev/m_app_dev/assignment_1/crimealaram/app/src/main/res/layout/activity_placemark.xml" value="0.25416666666666665" />
         <entry key="..\:/dev/m_app_dev/assignment_1/crimealaram/app/src/main/res/layout/activity_placemark_list.xml" value="0.11354166666666667" />
