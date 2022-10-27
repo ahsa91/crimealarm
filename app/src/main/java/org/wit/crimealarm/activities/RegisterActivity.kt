@@ -4,26 +4,23 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import org.wit.crimealarm.R
-import org.wit.crimealarm.databinding.ActivityLoginBinding
+import org.wit.crimealarm.databinding.ActivityRegisterBinding
 
+class RegisterActivity : AppCompatActivity() {
+    private lateinit var binding:ActivityRegisterBinding
 
-class LoginActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding= ActivityLoginBinding.inflate(layoutInflater)
+        binding= ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_login)
+
+//        setContentView(R.layout.activity_register)
 
 
-
-
-
-        binding.tvRegister.setOnClickListener {
+        binding.tvLogin.setOnClickListener {
 
             // Launch the register screen when the user clicks on the text.
-            val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
+            val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
             startActivity(intent)
         }
     }
