@@ -1,17 +1,22 @@
 package org.wit.crimealarm.activities
 
+import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
 import org.wit.crimealarm.R
 
+
+
 /**
  * A base activity class is used to define the functions and members which we will use in all the activities.
  * It inherits the AppCompatActivity class so in other activity class we will replace the AppCompatActivity with BaseActivity.
  */
-// START
 open class BaseActivity : AppCompatActivity() {
+
+
+
 
     /**
      * A function to show the success and error messages in snack bar component.
@@ -38,4 +43,6 @@ open class BaseActivity : AppCompatActivity() {
         }
         snackBar.show()
     }
+
+
 }
