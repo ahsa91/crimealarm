@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "680989785010",
+    "project_id": "crimealarm-73b7d",
+    "storage_bucket": "crimealarm-73b7d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:680989785010:android:5cf17026ba273ea47682ab",
+        "android_client_info": {
+          "package_name": "org.wit.crimealarm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "680989785010-5pgjdi6vhsleb9j3hebri8lmd56pqcvk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.wit.crimealarm",
+            "certificate_hash": "1ac0134a35524527d37928625e1e29a1204a1186"
+          }
+        },
+        {
+          "client_id": "680989785010-qgiqmf89vvlcllo97a3ss0t81gluhhh7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjQ-nvnfKx85ocSvBSsUPc-44ak06-_28"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "680989785010-qgiqmf89vvlcllo97a3ss0t81gluhhh7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
