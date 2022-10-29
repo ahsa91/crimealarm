@@ -43,6 +43,10 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
             when (v.id) {
 
                 R.id.tv_forgot_password -> {
+
+                    // Launch the forgot password screen when the user clicks on the forgot password text.
+                    val intent = Intent(this@LoginActivity, ForgotPasswordActivity::class.java)
+                    startActivity(intent)
                 }
 
                 R.id.btn_login -> {
@@ -74,7 +78,9 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                 false
             }
             else -> {
-                showErrorSnackBar("Your details are valid.", false)
+                // Launch the forgot password screen when the user clicks on the forgot password text.
+                val intent = Intent(this@LoginActivity, PlacemarkListActivity::class.java)
+                startActivity(intent)
                 true
             }
         }
