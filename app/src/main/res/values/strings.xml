@@ -46,7 +46,6 @@
     <string name="email_sent_success">\"Email sent successfully to reset your password! \"</string>
     <string name="button_signout">Sign Out</string>
     <string name="menu_deletePlacemark">Delete</string>
-    <string name="title_activity_placemark_maps">PlacemarkMapsActivity</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
