@@ -25,7 +25,7 @@ class PlacemarkMemStore : PlacemarkStore {
     override fun update(placemark: PlacemarkModel) {
         val foundPlacemark: PlacemarkModel? = placemarks.find { p -> p.id == placemark.id }
         if (foundPlacemark != null) {
-            foundPlacemark.title = placemark.title
+            foundPlacemark.name = placemark.name
             foundPlacemark.description = placemark.description
             foundPlacemark.image = placemark.image
             foundPlacemark.lat = placemark.lat
@@ -41,5 +41,10 @@ class PlacemarkMemStore : PlacemarkStore {
 
     private fun logAll() {
         placemarks.forEach { i("$it") }
+    }
+
+    override fun findById(id:Long) : PlacemarkModel? {
+        val foundPlacemark: PlacemarkModel? = placemarks.find { it.id == id }
+        return foundPlacemark
     }
 }

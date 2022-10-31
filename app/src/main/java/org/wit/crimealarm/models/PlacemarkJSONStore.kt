@@ -45,7 +45,12 @@ class PlacemarkJSONStore(private val context: Context) : PlacemarkStore {
         val placemarksList = findAll() as ArrayList<PlacemarkModel>
         var foundPlacemark: PlacemarkModel? = placemarksList.find { p -> p.id == placemark.id }
         if (foundPlacemark != null) {
-            foundPlacemark.title = placemark.title
+            foundPlacemark.name = placemark.name
+            foundPlacemark.height = placemark.height
+            foundPlacemark.sex = placemark.sex
+            foundPlacemark.age = placemark.age
+            foundPlacemark.date = placemark.date
+            foundPlacemark.time = placemark.time
             foundPlacemark.description = placemark.description
             foundPlacemark.image = placemark.image
             foundPlacemark.lat = placemark.lat
@@ -73,6 +78,11 @@ class PlacemarkJSONStore(private val context: Context) : PlacemarkStore {
     private fun logAll() {
         placemarks.forEach { Timber.i("$it") }
     }
+
+    override fun findById(id:Long) : PlacemarkModel? {
+        val foundPlacemark: PlacemarkModel? = placemarks.find { it.id == id }
+        return foundPlacemark
+    }
 }
 
 class UriParser : JsonDeserializer<Uri>,JsonSerializer<Uri> {
@@ -91,6 +101,8 @@ class UriParser : JsonDeserializer<Uri>,JsonSerializer<Uri> {
     ): JsonElement {
         return JsonPrimitive(src.toString())
     }
+
+
 
 
 }

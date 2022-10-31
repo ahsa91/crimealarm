@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name">CrimeAlarm</string>
-    <string name="button_addPlacemark">Add Placemark</string>
-    <string name="hint_placemarkTitle">Placemark Title</string>
+    <string name="button_addPlacemark">Add CrimeReport</string>
+    <string name="hint_name">name or alias of the criminal</string>
     <string name="hint_placemarkDescription">Description </string>
     <string name="menu_addPlacemark">Add</string>
     <string name="menu_cancelPlacemark">Cancel</string>
-    <string name="enter_placemark_title"> Please enter a Placemark Title </string>
-    <string name="save_placemark"> Save Placemark </string>
+    <string name="enter_criminal_name"> Please enter name/alias of criminal or unknown </string>
+    <string name="save_placemark"> Save Crime report </string>
     <string name="button_addImage"> Add Image </string>
     <string name="select_placemark_image">Select placemark image</string>
     <string name="change_placemark_image">Change placemark image</string>
@@ -45,7 +45,7 @@
     <string name="btn_lbl_submit">Submit</string>
     <string name="email_sent_success">\"Email sent successfully to reset your password! \"</string>
 
-    <string name="title_activity_placemark_maps">Map of All Placemarks </string>
+    <string name="title_activity_placemark_maps">Map of All Crime Reports </string>
     <string name="menu_deletePlacemark">Delete</string>
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
@@ -54,6 +54,12 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="button_signout">Sign out</string>
+    <string name="hint_height">height of the criminal</string>
+    <string name="hint_sex">sex of the criminal</string>
+    <string name="hint_age">approximate age of the criminal</string>
+    <string name="hint_date">date of the crime in DD/MM/YYYY</string>
+    <string name="hint_time">time of the crime(please specify am/pm)</string>
+
 
 
 

@@ -45,7 +45,12 @@ class PlacemarkActivity : AppCompatActivity() {
         if (intent.hasExtra("placemark_edit")) {
             edit = true
             placemark = intent.extras?.getParcelable("placemark_edit")!!
-            binding.placemarkTitle.setText(placemark.title)
+            binding.criminalName.setText(placemark.name)
+            binding.criminalHeight.setText(placemark.height)
+            binding.criminalSex.setText(placemark.sex)
+            binding.criminalAge.setText(placemark.age)
+            binding.crimeDate.setText(placemark.date)
+            binding.crimeTime.setText(placemark.time    )
             binding.description.setText(placemark.description)
             binding.btnAdd.setText(R.string.save_placemark)
             Picasso.get()
@@ -55,12 +60,17 @@ class PlacemarkActivity : AppCompatActivity() {
                 binding.chooseImage.setText(R.string.change_placemark_image)
             }
         }
-
+        //name sex age blaaaaaaaaaaaaaa
         binding.btnAdd.setOnClickListener() {
-            placemark.title = binding.placemarkTitle.text.toString()
+            placemark.name = binding.criminalName.text.toString()
+            placemark.height = binding.criminalHeight.text.toString()
+            placemark.sex = binding.criminalSex.text.toString()
+            placemark.age = binding.criminalAge.text.toString()
+            placemark.date = binding.crimeDate.text.toString()
+            placemark.time = binding.crimeTime.text.toString()
             placemark.description = binding.description.text.toString()
-            if (placemark.title.isEmpty()) {
-                Snackbar.make(it,R.string.enter_placemark_title, Snackbar.LENGTH_LONG)
+            if (placemark.name.isEmpty()) {
+                Snackbar.make(it,R.string.enter_criminal_name, Snackbar.LENGTH_LONG)
                         .show()
             } else {
                 if (edit) {
