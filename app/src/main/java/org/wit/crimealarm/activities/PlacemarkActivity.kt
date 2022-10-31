@@ -91,6 +91,8 @@ class PlacemarkActivity : AppCompatActivity() {
         binding.signOut.setOnClickListener{
             FirebaseAuth.getInstance().signOut()
             finish()
+            val intent = Intent(this@PlacemarkActivity, LoginActivity::class.java)
+            startActivity(intent)
 
         }
 
