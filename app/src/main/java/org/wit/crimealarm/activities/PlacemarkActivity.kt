@@ -9,6 +9,7 @@ import android.view.MenuItem
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 import org.wit.crimealarm.R
 import org.wit.crimealarm.databinding.ActivityPlacemarkBinding
@@ -75,6 +76,12 @@ class PlacemarkActivity : AppCompatActivity() {
 
         binding.chooseImage.setOnClickListener {
             showImagePicker(imageIntentLauncher)
+        }
+
+        binding.signOut.setOnClickListener{
+            FirebaseAuth.getInstance().signOut()
+            finish()
+
         }
 
         binding.placemarkLocation.setOnClickListener {
