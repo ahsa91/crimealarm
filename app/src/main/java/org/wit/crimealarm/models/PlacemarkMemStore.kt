@@ -34,6 +34,9 @@ class PlacemarkMemStore : PlacemarkStore {
             logAll()
         }
     }
+    override fun delete(placemark: PlacemarkModel) {
+        placemarks.remove(placemark)
+    }
 
     override fun delete(placemark: PlacemarkModel) {
         placemarks.remove(placemark)
