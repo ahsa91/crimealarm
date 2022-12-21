@@ -1,12 +1,15 @@
 package org.wit.crimealarm.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
+import com.google.firebase.auth.FirebaseAuth
 import org.wit.crimealarm.R
 import org.wit.crimealarm.databinding.ActivityLoginBinding
+import org.wit.crimealarm.firestore.FirestoreClass
+import org.wit.crimealarm.models.User
 
 
 class LoginActivity : BaseActivity(), View.OnClickListener {
@@ -52,7 +55,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                 R.id.btn_login -> {
 
 
-                    validateLoginDetails()
+                    logInRegisteredUser()
 
                 }
 
@@ -78,12 +81,59 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                 false
             }
             else -> {
-                // Launch the forgot password screen when the user clicks on the forgot password text.
-                val intent = Intent(this@LoginActivity, PlacemarkListActivity::class.java)
-                startActivity(intent)
                 true
             }
         }
     }
+
+
+    /**
+     * A function to Log-In. The user will be able to log in using the registered email and password with Firebase Authentication.
+     */
+    private fun logInRegisteredUser() {
+
+        if (validateLoginDetails()) {
+
+
+
+            // Get the text from editText and trim the space
+            val email = binding.etEmail.text.toString().trim { it <= ' ' }
+            val password = binding.etPassword.text.toString().trim { it <= ' ' }
+
+            // Log-In using FirebaseAuth
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener { task ->
+
+                    if (task.isSuccessful) {
+
+                        //
+
+                        FirestoreClass().getUserDetails(this@LoginActivity)
+                        // END
+                    } else {
+
+                        showErrorSnackBar(task.exception!!.message.toString(), true)
+                    }
+                }
+        }
+    }
+
+    /**
+     * A function to notify user that logged in success and get the user details from the FireStore database after authentication.
+     */
+    fun userLoggedInSuccess(user: User) {
+
+
+        // Print the user details in the log as of now.
+        Log.i("First Name: ", user.firstName)
+        Log.i("Last Name: ", user.lastName)
+        Log.i("Email: ", user.email)
+
+        // Redirect the user to Main Screen after log in.
+        startActivity(Intent(this@LoginActivity, PlacemarkListActivity::class.java))
+        finish()
+    }
+
+
 
 }
