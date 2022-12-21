@@ -60,7 +60,7 @@
     <string name="hint_date">date of the crime in DD/MM/YYYY</string>
     <string name="hint_time">time of the crime(please specify am/pm)</string>
 
-
+    <string name="register_success">You are registered successfully.</string>
 
 
 </resources>

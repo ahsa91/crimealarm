@@ -4,12 +4,15 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.widget.Toast
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import org.wit.crimealarm.R
 import org.wit.crimealarm.databinding.ActivityRegisterBinding
+import org.wit.crimealarm.firestore.FirestoreClass
+import org.wit.crimealarm.models.User
 
 class RegisterActivity : BaseActivity() {
     private lateinit var binding: ActivityRegisterBinding
@@ -123,13 +126,16 @@ class RegisterActivity : BaseActivity() {
         // Check with validate function if the entries are valid or not.
         if (validateRegisterDetails()) {
 
+
             val email: String = binding.etEmail.text.toString().trim { it <= ' ' }
-            val password: String = binding.etEmail.text.toString().trim { it <= ' ' }
+            val password: String = binding.etPassword.text.toString().trim { it <= ' ' }
 
             // Create an instance and create a register a user with email and password.
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(
                     OnCompleteListener<AuthResult> { task ->
+
+
 
                         // If the registration is successfully done
                         if (task.isSuccessful) {
@@ -137,19 +143,47 @@ class RegisterActivity : BaseActivity() {
                             // Firebase registered user
                             val firebaseUser: FirebaseUser = task.result!!.user!!
 
-                            showErrorSnackBar(
-                                "You are registered successfully. Your user id is ${firebaseUser.uid}",
-                                false
+
+                            // Instance of User data model class.
+                            val user = User(
+                                firebaseUser.uid,
+                                binding.etFirstName.text.toString().trim { it <= ' ' },
+                                binding.etLastName.text.toString().trim { it <= ' ' },
+                                binding.etEmail.text.toString().trim { it <= ' ' }
                             )
-                            //sign out user from firebase
-                            FirebaseAuth.getInstance().signOut()
-                            finish()
+
+
+                            // Pass the required values in the constructor.
+                            FirestoreClass().registerUser(this@RegisterActivity, user)
+
 
                         } else {
+
+
+
                             // If the registering is not successful then show error message.
                             showErrorSnackBar(task.exception!!.message.toString(), true)
                         }
                     })
         }
     }
+
+    fun userRegistrationSuccess() {
+
+        Toast.makeText(
+            this@RegisterActivity,
+            resources.getString(R.string.register_success),
+            Toast.LENGTH_SHORT
+        ).show()
+
+
+        /**
+         * Here the new user registered is automatically signed-in so we just sign-out the user from firebase
+         * and send him to Intro Screen for Sign-In
+         */
+        FirebaseAuth.getInstance().signOut()
+        // Finish the Register Screen
+        finish()
+    }
+
 }
