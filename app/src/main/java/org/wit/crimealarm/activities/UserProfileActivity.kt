@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -47,6 +48,8 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         binding.etEmail.setText(userDetails.email)
 
         binding.ivUserPhoto.setOnClickListener(this@UserProfileActivity)
+        binding.btnSubmit.setOnClickListener(this@UserProfileActivity)
+
 
     }
 
@@ -75,6 +78,13 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                             arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
                             Constants.READ_STORAGE_PERMISSION_CODE
                         )
+                    }
+                }
+
+                R.id.btn_submit ->{
+
+                    if(validateUserProfileDetails()){
+                        showErrorSnackBar("Your details are valid. You can update them.",false)
                     }
                 }
             }
@@ -155,6 +165,27 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         } else if (resultCode == Activity.RESULT_CANCELED) {
             // A log is printed when user close or cancel the image selection.
             Log.e("Request Cancelled", "Image selection cancelled")
+        }
+    }
+
+    /**
+     * A function to validate the input entries for profile details.
+     */
+    private fun validateUserProfileDetails(): Boolean {
+        return when {
+
+            // We have kept the user profile picture is optional.
+            // The FirstName, LastName, and Email Id are not editable when they come from the login screen.
+            // The Radio button for Gender always has the default selected value.
+
+            // Check if the mobile number is not empty as it is mandatory to enter.
+            TextUtils.isEmpty(binding.etMobileNumber.text.toString().trim { it <= ' ' }) -> {
+                showErrorSnackBar(resources.getString(R.string.err_msg_enter_mobile_number), true)
+                false
+            }
+            else -> {
+                true
+            }
         }
     }
 }

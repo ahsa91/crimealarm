@@ -9,8 +9,7 @@ import java.io.IOException
 
 class GlideLoader(val context: Context) {
 
-    // TODO Step 3: Create a function to load image from URI for the user profile picture.
-    // START
+
     /**
      * A function to load image from URI for the user profile picture.
      */
