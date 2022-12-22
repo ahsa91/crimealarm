@@ -125,11 +125,6 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
     fun userLoggedInSuccess(user: User) {
 
 
-        // Print the user details in the log as of now.
-        Log.i("First Name: ", user.firstName)
-        Log.i("Last Name: ", user.lastName)
-        Log.i("Email: ", user.email)
-
         // Redirect the user to Main Screen after log in.
         if (user.profileCompleted == 0) {
             // If the user profile is incomplete then launch the UserProfileActivity.
