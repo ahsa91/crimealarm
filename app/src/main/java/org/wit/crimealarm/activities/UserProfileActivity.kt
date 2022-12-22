@@ -37,7 +37,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
 
 //        // Create a instance of the User model class.
 //        var userDetails: User = User()
-        if(intent.hasExtra(Constants.EXTRA_USER_DETAILS)) {
+        if (intent.hasExtra(Constants.EXTRA_USER_DETAILS)) {
             // Get the user details from intent as a ParcelableExtra.
             mUserDetails = intent.getParcelableExtra(Constants.EXTRA_USER_DETAILS)!!
         }

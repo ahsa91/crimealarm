@@ -1,16 +1,22 @@
 package org.wit.crimealarm.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import com.google.firebase.auth.FirebaseAuth
 import org.wit.crimealarm.R
 import org.wit.crimealarm.databinding.ActivitySettingsBinding
 import org.wit.crimealarm.firestore.FirestoreClass
 import org.wit.crimealarm.models.User
+import org.wit.crimealarm.utils.Constants
 import org.wit.crimealarm.utils.GlideLoader
 
-class SettingsActivity : BaseActivity() {
+class SettingsActivity : BaseActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivitySettingsBinding
+    private lateinit var mUserDetails: User
+
 
     /**
      * This function is auto created by Android when the Activity Class is created.
@@ -26,6 +32,10 @@ class SettingsActivity : BaseActivity() {
 
 
         setupActionBar()
+
+        binding.tvEdit.setOnClickListener(this@SettingsActivity)
+
+        binding.btnLogout.setOnClickListener(this@SettingsActivity)
 
     }
 
@@ -53,7 +63,7 @@ class SettingsActivity : BaseActivity() {
 
         binding.toolbarSettingsActivity.setNavigationOnClickListener { onBackPressed() }
     }
-    
+
     /**
      * A function to get the user details from firestore.
      */
@@ -71,6 +81,9 @@ class SettingsActivity : BaseActivity() {
      */
     fun userDetailsSuccess(user: User) {
 
+        mUserDetails = user
+
+
         // Load the image using the Glide Loader class.
         GlideLoader(this@SettingsActivity).loadUserPicture(user.image, binding.ivUserPhoto)
 
@@ -78,5 +91,29 @@ class SettingsActivity : BaseActivity() {
         binding.tvGender.text = user.gender
         binding.tvEmail.text = user.email
         binding.tvMobileNumber.text = "${user.mobile}"
+    }
+
+    override fun onClick(v: View?) {
+        if (v != null) {
+            when (v.id) {
+
+
+                R.id.tv_edit -> {
+                    val intent = Intent(this@SettingsActivity, UserProfileActivity::class.java)
+                    intent.putExtra(Constants.EXTRA_USER_DETAILS, mUserDetails)
+                    startActivity(intent)
+                }
+
+                R.id.btn_logout -> {
+
+                    FirebaseAuth.getInstance().signOut()
+
+                    val intent = Intent(this@SettingsActivity, LoginActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                    finish()
+                }
+            }
+        }
     }
 }
