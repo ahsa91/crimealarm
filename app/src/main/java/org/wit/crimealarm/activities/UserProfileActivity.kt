@@ -16,6 +16,7 @@ import org.wit.crimealarm.R
 import org.wit.crimealarm.databinding.ActivityUserProfileBinding
 import org.wit.crimealarm.models.User
 import org.wit.crimealarm.utils.Constants
+import org.wit.crimealarm.utils.GlideLoader
 import java.io.IOException
 
 
@@ -135,6 +136,10 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                     try {
                         // The uri of selected image from phone storage.
                         val selectedImageFileUri = data.data!!
+                        GlideLoader(this@UserProfileActivity).loadUserPicture(
+                            selectedImageFileUri,
+                            binding.ivUserPhoto
+                        )
                         binding.ivUserPhoto.setImageURI(Uri.parse(selectedImageFileUri.toString()))
                     } catch (e: IOException) {
                         e.printStackTrace()
