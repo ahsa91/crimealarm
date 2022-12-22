@@ -76,6 +76,7 @@
     <string name="lbl_edit">Edit</string>
     <string name="lbl_addresses">Addresses</string>
     <string name="btn_lbl_logout">Logout</string>
+    <string name="title_edit_profile">Edit Profile</string>
 
 
 </resources>
