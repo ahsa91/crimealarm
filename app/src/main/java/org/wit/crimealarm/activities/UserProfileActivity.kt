@@ -15,6 +15,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import org.wit.crimealarm.R
 import org.wit.crimealarm.databinding.ActivityUserProfileBinding
+import org.wit.crimealarm.firestore.FirestoreClass
 import org.wit.crimealarm.models.User
 import org.wit.crimealarm.utils.Constants
 import org.wit.crimealarm.utils.GlideLoader
@@ -23,6 +24,7 @@ import java.io.IOException
 
 class UserProfileActivity : BaseActivity(), View.OnClickListener {
     private lateinit var binding: ActivityUserProfileBinding
+    private lateinit var mUserDetails: User
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,21 +33,21 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        // Create a instance of the User model class.
-        var userDetails: User = User()
+//        // Create a instance of the User model class.
+//        var userDetails: User = User()
         if(intent.hasExtra(Constants.EXTRA_USER_DETAILS)) {
             // Get the user details from intent as a ParcelableExtra.
-            userDetails = intent.getParcelableExtra(Constants.EXTRA_USER_DETAILS)!!
+            mUserDetails = intent.getParcelableExtra(Constants.EXTRA_USER_DETAILS)!!
         }
 
         binding.etFirstName.isEnabled = false
-        binding.etFirstName.setText(userDetails.firstName)
+        binding.etFirstName.setText(mUserDetails.firstName)
 
         binding.etLastName.isEnabled = false
-        binding.etLastName.setText(userDetails.lastName)
+        binding.etLastName.setText(mUserDetails.lastName)
 
         binding.etEmail.isEnabled = false
-        binding.etEmail.setText(userDetails.email)
+        binding.etEmail.setText(mUserDetails.email)
 
         binding.ivUserPhoto.setOnClickListener(this@UserProfileActivity)
         binding.btnSubmit.setOnClickListener(this@UserProfileActivity)
@@ -83,8 +85,38 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
 
                 R.id.btn_submit ->{
 
-                    if(validateUserProfileDetails()){
-                        showErrorSnackBar("Your details are valid. You can update them.",false)
+                    if (validateUserProfileDetails()) {
+
+                        val userHashMap = HashMap<String, Any>()
+
+                        // Here the field which are not editable needs no update. So, we will update user Mobile Number and Gender for now.
+
+                        // Here we get the text from editText and trim the space
+                        val mobileNumber = binding.etMobileNumber.text.toString().trim { it <= ' ' }
+
+                        val gender = if (binding.rbMale.isChecked) {
+                            Constants.MALE
+                        } else {
+                            Constants.FEMALE
+                        }
+
+                        if (mobileNumber.isNotEmpty()) {
+                            userHashMap[Constants.MOBILE] = mobileNumber.toLong()
+                        }
+
+                        userHashMap[Constants.GENDER] = gender
+
+
+
+
+
+
+                        // call the registerUser function of FireStore class to make an entry in the database.
+                        FirestoreClass().updateUserProfileData(
+                            this@UserProfileActivity,
+                            userHashMap
+                        )
+                        // END
                     }
                 }
             }
@@ -187,5 +219,23 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                 true
             }
         }
+    }
+
+    /**
+     * A function to notify the success result and proceed further accordingly after updating the user details.
+     */
+    fun userProfileUpdateSuccess() {
+
+
+        Toast.makeText(
+            this@UserProfileActivity,
+            resources.getString(R.string.msg_profile_update_success),
+            Toast.LENGTH_SHORT
+        ).show()
+
+
+        // Redirect to the Main Screen after profile completion.
+        startActivity(Intent(this@UserProfileActivity, PlacemarkListActivity::class.java))
+        finish()
     }
 }
