@@ -26,6 +26,8 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
     private lateinit var binding: ActivityUserProfileBinding
     private lateinit var mUserDetails: User
     private var mSelectedImageFileUri: Uri? = null
+    private var mUserProfileImageURL: String = ""
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding= ActivityUserProfileBinding.inflate(layoutInflater)
@@ -86,49 +88,31 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                 R.id.btn_submit ->{
 
 
-                    FirestoreClass().uploadImageToCloudStorage(
-                        this@UserProfileActivity,
-                        mSelectedImageFileUri
-                    )
+
+                    if (validateUserProfileDetails()) {
 
 
-                    /*if (validateUserProfileDetails()) {
 
-                        val userHashMap = HashMap<String, Any>()
+                        if (mSelectedImageFileUri != null) {
 
-                        // Here the field which are not editable needs no update. So, we will update user Mobile Number and Gender for now.
-
-                        // Here we get the text from editText and trim the space
-                        val mobileNumber = et_mobile_number.text.toString().trim { it <= ' ' }
-
-                        val gender = if (rb_male.isChecked) {
-                            Constants.MALE
+                            FirestoreClass().uploadImageToCloudStorage(
+                                this@UserProfileActivity,
+                                mSelectedImageFileUri
+                            )
                         } else {
-                            Constants.FEMALE
+
+
+
+                            updateUserProfileDetails()
+
                         }
+                    }
 
-                        if (mobileNumber.isNotEmpty()) {
-                            userHashMap[Constants.MOBILE] = mobileNumber.toLong()
-                        }
-
-                        userHashMap[Constants.GENDER] = gender
-
-
-                        // Show the progress dialog.
-                        showProgressDialog(resources.getString(R.string.please_wait))
-
-                        // call the registerUser function of FireStore class to make an entry in the database.
-                        FirestoreClass().updateUserProfileData(
-                            this@UserProfileActivity,
-                            userHashMap
-                        )
-                    }*/
-
-                    // END
                 }
             }
         }
     }
+
 
 
 
@@ -255,10 +239,51 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
 
 
 
-        Toast.makeText(
+        mUserProfileImageURL = imageURL
+
+
+
+        updateUserProfileDetails()
+
+    }
+
+
+    /**
+     * A function to update user profile details to the firestore.
+     */
+    private fun updateUserProfileDetails() {
+
+        val userHashMap = HashMap<String, Any>()
+
+        // Here the field which are not editable needs no update. So, we will update user Mobile Number and Gender for now.
+
+        // Here we get the text from editText and trim the space
+        val mobileNumber = binding.etMobileNumber.text.toString().trim { it <= ' ' }
+
+        val gender = if (binding.rbMale.isChecked) {
+            Constants.MALE
+        } else {
+            Constants.FEMALE
+        }
+
+
+        if (mUserProfileImageURL.isNotEmpty()) {
+            userHashMap[Constants.IMAGE] = mUserProfileImageURL
+        }
+
+
+        if (mobileNumber.isNotEmpty()) {
+            userHashMap[Constants.MOBILE] = mobileNumber.toLong()
+        }
+
+        userHashMap[Constants.GENDER] = gender
+
+
+
+        // call the registerUser function of FireStore class to make an entry in the database.
+        FirestoreClass().updateUserProfileData(
             this@UserProfileActivity,
-            "Your image is uploaded successfully. Image URL is $imageURL",
-            Toast.LENGTH_SHORT
-        ).show()
+            userHashMap
+        )
     }
 }
