@@ -10,6 +10,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import org.wit.crimealarm.activities.LoginActivity
 import org.wit.crimealarm.activities.RegisterActivity
+import org.wit.crimealarm.activities.SettingsActivity
 import org.wit.crimealarm.activities.UserProfileActivity
 import org.wit.crimealarm.models.User
 import org.wit.crimealarm.utils.Constants
@@ -79,6 +80,11 @@ class FirestoreClass {
                     is LoginActivity -> {
                         // Call a function of base activity for transferring the result to it.
                         activity.userLoggedInSuccess(user)
+                    }
+
+                    is SettingsActivity ->{
+                        // Call a function of base activity for transferring the result to it.
+                        activity.userDetailsSuccess(user)
                     }
                 }
             }

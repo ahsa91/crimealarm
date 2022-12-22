@@ -4,6 +4,7 @@
     <string name="hint_name">name or alias of the criminal</string>
     <string name="hint_placemarkDescription">Description </string>
     <string name="menu_addPlacemark">Add</string>
+    <string name="menu_settings">Settings</string>
     <string name="menu_cancelPlacemark">Cancel</string>
     <string name="enter_criminal_name"> Please enter name/alias of criminal or unknown </string>
     <string name="save_placemark"> Save Crime report </string>
@@ -71,7 +72,7 @@
     <string name="image_selection_failed">Image selection Failed!</string>
     <string name="err_msg_enter_mobile_number">Please enter mobile number.</string>
     <string name="msg_profile_update_success">Your profile is updated successfully.</string>
-    <string name="title_settings">Setting</string>
+    <string name="title_settings">Settings</string>
     <string name="lbl_edit">Edit</string>
     <string name="lbl_addresses">Addresses</string>
     <string name="btn_lbl_logout">Logout</string>

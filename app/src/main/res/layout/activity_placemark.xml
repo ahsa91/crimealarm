@@ -40,7 +40,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                //used to be placemark title
                 <EditText
                     android:id="@+id/criminalName"
                     android:layout_width="match_parent"
