@@ -71,6 +71,10 @@
     <string name="image_selection_failed">Image selection Failed!</string>
     <string name="err_msg_enter_mobile_number">Please enter mobile number.</string>
     <string name="msg_profile_update_success">Your profile is updated successfully.</string>
+    <string name="title_settings">Setting</string>
+    <string name="lbl_edit">Edit</string>
+    <string name="lbl_addresses">Addresses</string>
+    <string name="btn_lbl_logout">Logout</string>
 
 
 </resources>
