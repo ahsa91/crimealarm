@@ -1,10 +1,14 @@
 package org.wit.crimealarm.activities
 
+import android.Manifest
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import org.wit.crimealarm.R
-import org.wit.crimealarm.databinding.ActivityLoginBinding
 import org.wit.crimealarm.databinding.ActivityUserProfileBinding
 import org.wit.crimealarm.models.User
 import org.wit.crimealarm.utils.Constants
@@ -42,7 +46,68 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
 
     }
 
-//    override fun onClick(p0: View?) {
-//        TODO("Not yet implemented")
-//    }
+    override fun onClick(v: View?) {
+        if (v != null) {
+            when (v.id) {
+
+                R.id.iv_user_photo -> {
+
+                    // Here we will check if the permission is already allowed or we need to request for it.
+                    // First of all we will check the READ_EXTERNAL_STORAGE permission and if it is not allowed we will request for the same.
+                    if (ContextCompat.checkSelfPermission(
+                            this,
+                            Manifest.permission.READ_EXTERNAL_STORAGE
+                        )
+                        == PackageManager.PERMISSION_GRANTED
+                    ) {
+
+                        showErrorSnackBar("You already have the storage permission.", false)
+                    } else {
+
+                        /*Requests permissions to be granted to this application. These permissions
+                         must be requested in your manifest, they should not be granted to your app,
+                         and they should have protection level*/
+
+                        ActivityCompat.requestPermissions(
+                            this,
+                            arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                            Constants.READ_STORAGE_PERMISSION_CODE
+                        )
+                    }
+                }
+            }
+        }
+    }
+    // END
+
+
+    /**
+     * This function will identify the result of runtime permission after the user allows or deny permission based on the unique code.
+     *
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == Constants.READ_STORAGE_PERMISSION_CODE) {
+            //If permission is granted
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                showErrorSnackBar("The storage permission is granted.", false)
+            } else {
+                //Displaying another toast if permission is not granted
+                Toast.makeText(
+                    this,
+                    resources.getString(R.string.read_storage_permission_denied),
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
+    }
+
 }
