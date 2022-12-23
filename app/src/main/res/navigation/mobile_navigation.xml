@@ -23,7 +23,7 @@
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
     <activity
-        android:id="@+id/PlacemarkListActivity"
+        android:id="@+id/item_list"
         android:name="org.wit.crimealarm.activities.PlacemarkListActivity"
         android:label="@string/title_activity_placemark_maps"
         tools:layout="@layout/activity_placemark_list" />
