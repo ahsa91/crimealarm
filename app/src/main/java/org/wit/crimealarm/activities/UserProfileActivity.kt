@@ -133,7 +133,8 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                     if (validateUserProfileDetails()) {
 
 
-
+                        // Show the progress dialog.
+                        showProgressDialog(resources.getString(R.string.please_wait))
                         if (mSelectedImageFileUri != null) {
 
                             FirestoreClass().uploadImageToCloudStorage(
@@ -258,7 +259,8 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
      */
     fun userProfileUpdateSuccess() {
 
-
+        // Hide the progress dialog
+        hideProgressDialog()
         Toast.makeText(
             this@UserProfileActivity,
             resources.getString(R.string.msg_profile_update_success),

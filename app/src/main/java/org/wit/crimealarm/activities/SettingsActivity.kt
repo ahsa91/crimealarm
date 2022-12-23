@@ -71,6 +71,9 @@ class SettingsActivity : BaseActivity(), View.OnClickListener {
 
         // Show the progress dialog
 
+        showProgressDialog(resources.getString(R.string.please_wait))
+
+
         // Call the function of Firestore class to get the user details from firestore which is already created.
         FirestoreClass().getUserDetails(this@SettingsActivity)
     }
@@ -83,6 +86,8 @@ class SettingsActivity : BaseActivity(), View.OnClickListener {
 
         mUserDetails = user
 
+        // Hide the progress dialog
+        hideProgressDialog()
 
         // Load the image using the Glide Loader class.
         GlideLoader(this@SettingsActivity).loadUserPicture(user.image, binding.ivUserPhoto)

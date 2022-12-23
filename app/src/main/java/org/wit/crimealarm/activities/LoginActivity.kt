@@ -95,7 +95,8 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
 
         if (validateLoginDetails()) {
 
-
+            // Show the progress dialog.
+            showProgressDialog(resources.getString(R.string.please_wait))
 
             // Get the text from editText and trim the space
             val email = binding.etEmail.text.toString().trim { it <= ' ' }
@@ -110,9 +111,10 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                         //
 
                         FirestoreClass().getUserDetails(this@LoginActivity)
-                        // END
-                    } else {
 
+                    } else {
+                        // Hide the progress dialog
+                        hideProgressDialog()
                         showErrorSnackBar(task.exception!!.message.toString(), true)
                     }
                 }
@@ -124,7 +126,8 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
      */
     fun userLoggedInSuccess(user: User) {
 
-
+        // Hide the progress dialog.
+        hideProgressDialog()
         // Redirect the user to Main Screen after log in.
         if (user.profileCompleted == 0) {
             // If the user profile is incomplete then launch the UserProfileActivity.

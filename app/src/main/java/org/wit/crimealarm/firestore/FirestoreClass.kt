@@ -38,6 +38,7 @@ class FirestoreClass {
                 activity.userRegistrationSuccess()
             }
             .addOnFailureListener { e ->
+                activity.hideProgressDialog()
                 Log.e(
                     activity.javaClass.simpleName,
                     "Error while registering the user.",
@@ -90,6 +91,16 @@ class FirestoreClass {
             }
             .addOnFailureListener { e ->
 
+                // Hide the progress dialog if there is any error. And print the error in log.
+                when (activity) {
+                    is LoginActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                    is SettingsActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                }
+
                 Log.e(
                     activity.javaClass.simpleName,
                     "Error while getting user details.",
@@ -129,6 +140,7 @@ class FirestoreClass {
                 when (activity) {
                     is UserProfileActivity -> {
                         // Hide the progress dialog if there is any error. And print the error in log.
+                        activity.hideProgressDialog()
                     }
                 }
 
@@ -180,6 +192,7 @@ class FirestoreClass {
                 // Hide the progress dialog if there is any error. And print the error in log.
                 when (activity) {
                     is UserProfileActivity -> {
+                        activity.hideProgressDialog()
                     }
                 }
 

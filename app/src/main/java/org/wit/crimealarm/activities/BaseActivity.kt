@@ -15,6 +15,8 @@ import org.wit.crimealarm.R
  */
 open class BaseActivity : AppCompatActivity() {
 
+    private lateinit var mProgressDialog: Dialog
+
 
 
 
@@ -42,6 +44,28 @@ open class BaseActivity : AppCompatActivity() {
             )
         }
         snackBar.show()
+    }
+
+    fun showProgressDialog(text: String) {
+        mProgressDialog = Dialog(this)
+
+        /*Set the screen content from a layout resource.
+        The resource will be inflated, adding all top-level views to the screen.*/
+        mProgressDialog.setContentView(R.layout.dialog_progress)
+
+//        mProgressDialog.tv_progress_text.text = text
+
+        mProgressDialog.setCancelable(false)
+        mProgressDialog.setCanceledOnTouchOutside(false)
+
+        //Start the dialog and display it on screen.
+        mProgressDialog.show()
+    }
+    /**
+     * This function is used to dismiss the progress dialog if it is visible to user.
+     */
+    fun hideProgressDialog() {
+        mProgressDialog.dismiss()
     }
 
 
