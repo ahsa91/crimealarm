@@ -16,5 +16,28 @@
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_slideshow" />
+        <item
+            android:id="@+id/item_add"
+            android:icon="@android:drawable/ic_menu_add"
+            android:title="@string/menu_addPlacemark"
+            />
+        <item
+            android:id="@+id/item_list"
+            android:icon="@android:drawable/ic_menu_sort_by_size"
+            android:title="@string/title_list" />
+
+        <item
+            android:id="@+id/item_map"
+            android:icon="@android:drawable/ic_menu_mapmode"
+            android:title="@string/title_activity_placemark_maps" />
+        <item
+            android:id="@+id/item_settings"
+            android:icon="@drawable/ic_vector_settings"
+            android:title="@string/menu_settings"
+            />
+
+
     </group>
+
+
 </menu>

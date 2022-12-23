@@ -49,6 +49,8 @@
     <string name="email_sent_success">\"Email sent successfully to reset your password! \"</string>
 
     <string name="title_activity_placemark_maps">Map of All Crime Reports </string>
+    <string name="title_list">List of All Crime Reports </string>
+
     <string name="menu_deletePlacemark">Delete</string>
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>

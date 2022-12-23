@@ -22,4 +22,26 @@
         android:name="org.wit.crimealarm.activities.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+    <activity
+        android:id="@+id/PlacemarkListActivity"
+        android:name="org.wit.crimealarm.activities.PlacemarkListActivity"
+        android:label="@string/title_activity_placemark_maps"
+        tools:layout="@layout/activity_placemark_list" />
+
+    <activity
+        android:id="@+id/item_add"
+        android:name="org.wit.crimealarm.activities.PlacemarkActivity"
+        android:label="@string/menu_addPlacemark"
+        tools:layout="@layout/activity_placemark" />
+    <activity
+        android:id="@+id/item_map"
+        android:name="org.wit.crimealarm.activities.PlacemarkMapsActivity"
+        android:label="@string/title_activity_placemark_maps"
+        tools:layout="@layout/activity_placemark_maps" />
+    <activity
+        android:id="@+id/item_settings"
+        android:name="org.wit.crimealarm.activities.SettingsActivity"
+        android:label="@string/menu_settings"
+        tools:layout="@layout/activity_settings" />
+
 </navigation>
